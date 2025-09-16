@@ -1,29 +1,40 @@
-﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Ecommerce_mvc.Models;
 
 namespace Ecommerce_mvc.Controllers
 {
     public class AccountController : Controller
     {
-        private readonly SignInManager<IdentityUser> _signInManager;
-
-        public AccountController(SignInManager<IdentityUser> signInManager)
+        public IActionResult Login()
         {
-            _signInManager = signInManager;
+            return View();
         }
 
         [HttpPost]
-        public async Task<IActionResult> Login(string email, string password)
+        public IActionResult Login(LoginViewModel model)
         {
-            var result = await _signInManager.PasswordSignInAsync(email, password, false, false);
-            if (result.Succeeded)
+            if (ModelState.IsValid)
             {
-                return RedirectToAction("Index", "Products");
+                if (model.Email == "admin@example.com" && model.Password == "123456")
+                {
+                    HttpContext.Session.SetString("IsLoggedIn", "true");
+                    HttpContext.Session.SetString("UserEmail", model.Email);
+
+                    return RedirectToAction("Index", "Product");
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Email o contraseña incorrectos");
+                }
             }
 
-            ModelState.AddModelError("", "Login inválido");
-            return View();
+            return View(model);
+        }
+
+        public IActionResult Logout()
+        {
+            HttpContext.Session.Clear();
+            return RedirectToAction("Index", "Home");
         }
     }
-
 }

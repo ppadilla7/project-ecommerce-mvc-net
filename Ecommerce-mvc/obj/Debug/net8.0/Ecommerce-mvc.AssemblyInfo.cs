@@ -10,10 +10,12 @@
 
 using System;
 using System.Reflection;
+
+
 [assembly: System.Reflection.AssemblyCompanyAttribute("Ecommerce-mvc")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+63b15654e1b5e1741375811ab90394ae5e2b3535")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c3cbc4e9578101e7c2d827d910d39ec8b1f69c08")]
 [assembly: System.Reflection.AssemblyProductAttribute("Ecommerce-mvc")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Ecommerce-mvc")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

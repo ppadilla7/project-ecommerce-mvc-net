@@ -1,8 +1,215 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Inicio";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="container-fluid">
+    <!-- Hero Section -->
+    <div class="row justify-content-center mb-5">
+        <div class="col-lg-10">
+            <div class="card glass-effect animated-bg text-white text-center py-5">
+                <div class="card-body">
+                    <h1 class="display-4 fw-bold mb-4">
+                        <i class="fas fa-shopping-bag me-3"></i>
+                        Bienvenido a Ecommerce Premium
+                    </h1>
+                    <p class="lead mb-4">
+                        La plataforma más avanzada para gestionar tu tienda online con estilo y eficiencia
+                    </p>
+                    @if (Context.Session.GetString("IsLoggedIn") != "true")
+                    {
+                        <a href="/Account/Login" class="btn btn-light btn-lg me-3">
+                            <i class="fas fa-sign-in-alt me-2"></i>Iniciar Sesión
+                        </a>
+                    }
+                    else
+                    {
+                        <a href="/Product" class="btn btn-light btn-lg me-3">
+                            <i class="fas fa-box me-2"></i>Ver Productos
+                        </a>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Features Section -->
+    <div class="row mb-5">
+        <div class="col-12 text-center mb-4">
+            <h2 class="text-purple fw-bold">¿Por qué elegir nuestra plataforma?</h2>
+            <p class="text-muted">Descubre las características que nos hacen únicos</p>
+        </div>
+    </div>
+
+    <div class="row g-4 mb-5">
+        <div class="col-md-6 col-lg-3">
+            <div class="card glass-effect h-100 text-center">
+                <div class="card-body">
+                    <div class="mb-3">
+                        <i class="fas fa-rocket fa-3x text-purple"></i>
+                    </div>
+                    <h5 class="card-title text-purple">Rápido y Eficiente</h5>
+                    <p class="card-text text-muted">
+                        Interfaz optimizada para una gestión rápida y sin complicaciones
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-3">
+            <div class="card glass-effect h-100 text-center">
+                <div class="card-body">
+                    <div class="mb-3">
+                        <i class="fas fa-shield-alt fa-3x text-success"></i>
+                    </div>
+                    <h5 class="card-title text-purple">Seguro y Confiable</h5>
+                    <p class="card-text text-muted">
+                        Máxima seguridad para tus datos y transacciones comerciales
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-3">
+            <div class="card glass-effect h-100 text-center">
+                <div class="card-body">
+                    <div class="mb-3">
+                        <i class="fas fa-mobile-alt fa-3x text-info"></i>
+                    </div>
+                    <h5 class="card-title text-purple">Diseño Responsivo</h5>
+                    <p class="card-text text-muted">
+                        Funciona perfectamente en todos los dispositivos y pantallas
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-3">
+            <div class="card glass-effect h-100 text-center">
+                <div class="card-body">
+                    <div class="mb-3">
+                        <i class="fas fa-chart-line fa-3x text-warning"></i>
+                    </div>
+                    <h5 class="card-title text-purple">Analytics Avanzados</h5>
+                    <p class="card-text text-muted">
+                        Análisis detallados para optimizar tu estrategia de ventas
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Stats Section -->
+    @if (Context.Session.GetString("IsLoggedIn") == "true")
+    {
+        <div class="row mb-5">
+            <div class="col-12">
+                <div class="card glass-effect">
+                    <div class="card-body">
+                        <h3 class="text-purple mb-4">
+                            <i class="fas fa-tachometer-alt me-2"></i>Panel de Control
+                        </h3>
+                        <div class="row text-center">
+                            <div class="col-md-3 mb-3">
+                                <div class="p-3">
+                                    <i class="fas fa-box fa-2x text-info mb-2"></i>
+                                    <h4 class="text-purple">0</h4>
+                                    <p class="text-muted mb-0">Productos</p>
+                                </div>
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <div class="p-3">
+                                    <i class="fas fa-shopping-cart fa-2x text-success mb-2"></i>
+                                    <h4 class="text-purple">0</h4>
+                                    <p class="text-muted mb-0">Ventas</p>
+                                </div>
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <div class="p-3">
+                                    <i class="fas fa-users fa-2x text-warning mb-2"></i>
+                                    <h4 class="text-purple">0</h4>
+                                    <p class="text-muted mb-0">Clientes</p>
+                                </div>
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <div class="p-3">
+                                    <i class="fas fa-dollar-sign fa-2x text-danger mb-2"></i>
+                                    <h4 class="text-purple">$0</h4>
+                                    <p class="text-muted mb-0">Ingresos</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
+    <!-- Call to Action -->
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card glass-effect text-center">
+                <div class="card-body py-5">
+                    <h3 class="text-purple mb-3">¿Listo para comenzar?</h3>
+                    <p class="text-muted mb-4">
+                        Únete a miles de comerciantes que ya confían en nuestra plataforma
+                    </p>
+                    @if (Context.Session.GetString("IsLoggedIn") != "true")
+                    {
+                        <a href="/Account/Login" class="btn btn-primary btn-lg">
+                            <i class="fas fa-rocket me-2"></i>Comenzar Ahora
+                        </a>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
+<style>
+    .animate-fade-in {
+        animation: fadeInUp 0.8s ease-out;
+    }
+
+    @@keyframes fadeInUp {
+        from
+
+    {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    }
+
+    .card:hover {
+        transform: translateY(-5px);
+        transition: all 0.3s ease;
+    }
+
+    .animated-bg {
+        position: relative;
+        overflow: hidden;
+    }
+
+        .animated-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(-45deg, rgba(238, 119, 82, 0.8), rgba(231, 60, 126, 0.8), rgba(35, 166, 213, 0.8), rgba(35, 213, 171, 0.8));
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+            z-index: 1;
+        }
+
+        .animated-bg .card-body {
+            position: relative;
+            z-index: 2;
+        }
+</style>
