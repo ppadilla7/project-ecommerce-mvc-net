@@ -1,7 +1,7 @@
 ﻿using Ecommerce_mvc.Models;
 using Microsoft.AspNetCore.Identity;
 
-namespace Ecommerce_mvc
+namespace Ecommerce_mvc.Data
 {
     public static class DbInitializer
     {
@@ -15,9 +15,9 @@ namespace Ecommerce_mvc
             if (!context.Products.Any())
             {
                 context.Products.AddRange(
-                    new Product { Name = "Laptop", Price = 2500, Description = "Laptop potente", ImageUrl = "laptop.jpg" },
-                    new Product { Name = "Mouse", Price = 50, Description = "Mouse inalámbrico", ImageUrl = "mouse.jpg" },
-                    new Product { Name = "Teclado", Price = 120, Description = "Teclado mecánico", ImageUrl = "teclado.jpg" }
+                    new Product { Name = "Laptop", Price = 2500, Description = "Laptop potente", ImageUrl = "https://img.freepik.com/vector-gratis/ilustracion-compras-linea_53876-5906.jpg" },
+                    new Product { Name = "Mouse", Price = 50, Description = "Mouse inalámbrico", ImageUrl = "https://img.freepik.com/vector-gratis/ilustracion-compras-linea_53876-5906.jpg" },
+                    new Product { Name = "Teclado", Price = 120, Description = "Teclado mecánico", ImageUrl = "https://img.freepik.com/vector-gratis/ilustracion-compras-linea_53876-5906.jpg" }
                 );
                 context.SaveChanges();
             }
