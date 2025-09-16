@@ -1,0 +1,51 @@
+## Archivos de compilación
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Ll]ogs/
+*.log
+*.binlog
+
+## Plataformas específicas
+x64/
+x86/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+[Ww][Ii][Nn]32/
+
+## Visual Studio
+.vs/
+*.suo
+*.user
+*.sln.docstates
+*.dbmdl
+
+## Archivos de configuración y backups
+*.backup
+*.orig
+*.tmp
+*.swp
+*.sublime-project
+*.sublime-workspace
+
+## Archivos de paquetes y dependencias
+packages/
+*.nupkg
+*.snupkg
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+## Resultados de pruebas
+TestResult.xml
+nunit-*.xml
+*.VisualState.xml
+[Tt]est[Rr]esult*/
+[Bb]uild[Ll]og.*
+
+## Otros
+Publish/
+CodeCoverage/
+ScaffoldingReadMe.txt
+~$*
+*~
