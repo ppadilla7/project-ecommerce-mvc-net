@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "D:\\PPADILLA\\repositorios\\project-ecommerce-mvc-net\\Ecommerce-mvc\\Ecommerce-mvc.csproj": {}
+    "C:\\Users\\jhone\\Source\\Repos\\project-ecommerce-mvc-net\\Ecommerce-mvc\\Ecommerce-mvc.csproj": {}
   },
   "projects": {
-    "D:\\PPADILLA\\repositorios\\project-ecommerce-mvc-net\\Ecommerce-mvc\\Ecommerce-mvc.csproj": {
+    "C:\\Users\\jhone\\Source\\Repos\\project-ecommerce-mvc-net\\Ecommerce-mvc\\Ecommerce-mvc.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\PPADILLA\\repositorios\\project-ecommerce-mvc-net\\Ecommerce-mvc\\Ecommerce-mvc.csproj",
+        "projectUniqueName": "C:\\Users\\jhone\\Source\\Repos\\project-ecommerce-mvc-net\\Ecommerce-mvc\\Ecommerce-mvc.csproj",
         "projectName": "Ecommerce-mvc",
-        "projectPath": "D:\\PPADILLA\\repositorios\\project-ecommerce-mvc-net\\Ecommerce-mvc\\Ecommerce-mvc.csproj",
-        "packagesPath": "C:\\Users\\ppadi\\.nuget\\packages\\",
-        "outputPath": "D:\\PPADILLA\\repositorios\\project-ecommerce-mvc-net\\Ecommerce-mvc\\obj\\",
+        "projectPath": "C:\\Users\\jhone\\Source\\Repos\\project-ecommerce-mvc-net\\Ecommerce-mvc\\Ecommerce-mvc.csproj",
+        "packagesPath": "C:\\Users\\jhone\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\jhone\\Source\\Repos\\project-ecommerce-mvc-net\\Ecommerce-mvc\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\ppadi\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\jhone\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -22,9 +26,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
-          "https://api.nuget.org/v3/index.json": {},
-          "https://exnuget.excellerize.com/api/v2": {}
+          "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net8.0": {
@@ -41,7 +43,8 @@
           "enableAudit": "true",
           "auditLevel": "low",
           "auditMode": "direct"
-        }
+        },
+        "SdkAnalysisLevel": "9.0.300"
       },
       "frameworks": {
         "net8.0": {
@@ -65,7 +68,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.302/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.305/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
