@@ -11,19 +11,71 @@ namespace Ecommerce_mvc.Data
             var context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
             var userManager = scope.ServiceProvider.GetRequiredService<UserManager<IdentityUser>>();
 
-            // Insertar productos si no existen
-            if (!context.Products.Any())
+            // Asegurar que la base de datos existe
+            context.Database.EnsureCreated();
+
+            // Insertar usuarios de prueba si no existen
+            if (!context.Users.Any())
             {
-                context.Products.AddRange(
-                    new Product { Name = "Laptop", Price = 2500, Description = "Laptop potente", ImageUrl = "https://img.freepik.com/vector-gratis/ilustracion-compras-linea_53876-5906.jpg" },
-                    new Product { Name = "Mouse", Price = 50, Description = "Mouse inalámbrico", ImageUrl = "https://img.freepik.com/vector-gratis/ilustracion-compras-linea_53876-5906.jpg" },
-                    new Product { Name = "Teclado", Price = 120, Description = "Teclado mecánico", ImageUrl = "https://img.freepik.com/vector-gratis/ilustracion-compras-linea_53876-5906.jpg" }
+                context.Users.AddRange(
+                    new User
+                    {
+                        Name = "Administrador",
+                        Email = "admin@tienda.com",
+                        Password = "123456",
+                        IsActive = true,
+                        CreatedAt = DateTime.Now
+                    },
+                    new User
+                    {
+                        Name = "Juan Pérez",
+                        Email = "juan@ejemplo.com",
+                        Password = "password123",
+                        IsActive = true,
+                        CreatedAt = DateTime.Now
+                    },
+                    new User
+                    {
+                        Name = "María García",
+                        Email = "maria@ejemplo.com",
+                        Password = "maria2024",
+                        IsActive = true,
+                        CreatedAt = DateTime.Now
+                    }
                 );
                 context.SaveChanges();
             }
 
-            // Insertar usuario si no existe
-            string email = "usuario@correo.com";
+            // Insertar productos si no existen
+            if (!context.Products.Any())
+            {
+                context.Products.AddRange(
+                    new Product
+                    {
+                        Name = "Laptop HP Pavilion",
+                        Price = 2500.00m,
+                        Description = "Laptop potente para trabajo y gaming con procesador Intel i7",
+                        ImageUrl = "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=400&h=300&fit=crop"
+                    },
+                    new Product
+                    {
+                        Name = "Mouse Logitech MX",
+                        Price = 75.50m,
+                        Description = "Mouse inalámbrico ergonómico con alta precisión",
+                        ImageUrl = "https://images.unsplash.com/photo-1527814050087-3793815479db?w=400&h=300&fit=crop"
+                    },
+                    new Product
+                    {
+                        Name = "Teclado Mecánico",
+                        Price = 120.00m,
+                        Description = "Teclado mecánico RGB con switches Cherry MX",
+                        ImageUrl = "https://images.unsplash.com/photo-1541140532154-b024d705b90a?w=400&h=300&fit=crop"
+                    }
+                );
+                context.SaveChanges();
+            }
+
+            string email = "admin@tienda.com";
             if (await userManager.FindByEmailAsync(email) == null)
             {
                 var user = new IdentityUser
@@ -33,10 +85,8 @@ namespace Ecommerce_mvc.Data
                     EmailConfirmed = true
                 };
 
-                await userManager.CreateAsync(user, "Usuario123!"); // contraseña segura
+                await userManager.CreateAsync(user, "Admin123!"); // contraseña segura
             }
         }
     }
-
-
 }

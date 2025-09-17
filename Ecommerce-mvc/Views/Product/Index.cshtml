@@ -4,6 +4,15 @@
     Layout = "_Layout";
 }
 
+<!-- Mostrar mensaje de éxito si existe -->
+@if (TempData["Success"] != null)
+{
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <i class="fas fa-check-circle me-2"></i>@TempData["Success"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
 <div class="container-fluid px-4">
     <div class="row mb-4">
         <div class="col-12">
@@ -16,9 +25,9 @@
                             </h1>
                             <p class="text-muted mb-0">Gestiona tu inventario de productos</p>
                         </div>
-                        <button class="btn btn-primary">
+                        <a asp-action="Create" class="btn btn-primary">
                             <i class="fas fa-plus me-2"></i>Agregar Producto
-                        </button>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -39,6 +48,9 @@
                             Parece que aún no has agregado productos a tu tienda.
                             Comienza agregando tu primer producto para empezar a vender.
                         </p>
+                        <a asp-action="Create" class="btn btn-primary btn-lg">
+                            <i class="fas fa-plus me-2"></i>Crear Primer Producto
+                        </a>
                     </div>
                 </div>
             </div>
@@ -83,67 +95,60 @@
     }
     else
     {
-        <!-- Filtros y búsqueda -->
+        <!-- Estadísticas rápidas -->
         <div class="row mb-4">
-            <div class="col-12">
-                <div class="card glass-effect">
+            <div class="col-md-3">
+                <div class="card glass-effect text-center">
                     <div class="card-body">
-                        <div class="row g-3">
-                            <div class="col-md-4">
-                                <div class="input-group">
-                                    <span class="input-group-text">
-                                        <i class="fas fa-search text-purple"></i>
-                                    </span>
-                                    <input type="text" class="form-control" placeholder="Buscar productos...">
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <select class="form-select">
-                                    <option value="">Todas las categorías</option>
-                                    <option value="electronics">Electrónicos</option>
-                                    <option value="clothing">Ropa</option>
-                                    <option value="books">Libros</option>
-                                </select>
-                            </div>
-                            <div class="col-md-3">
-                                <select class="form-select">
-                                    <option value="">Ordenar por</option>
-                                    <option value="name">Nombre</option>
-                                    <option value="price">Precio</option>
-                                    <option value="date">Fecha</option>
-                                </select>
-                            </div>
-                            <div class="col-md-2">
-                                <button class="btn btn-outline-secondary w-100">
-                                    <i class="fas fa-filter me-1"></i>Filtrar
-                                </button>
-                            </div>
-                        </div>
+                        <i class="fas fa-box fa-2x text-info mb-2"></i>
+                        <h4 class="text-purple">@Model.Count</h4>
+                        <p class="text-muted mb-0">Productos</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card glass-effect text-center">
+                    <div class="card-body">
+                        <i class="fas fa-dollar-sign fa-2x text-success mb-2"></i>
+                        <h4 class="text-purple">$@Model.Sum(p => p.Price).ToString("F2")</h4>
+                        <p class="text-muted mb-0">Valor Total</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card glass-effect text-center">
+                    <div class="card-body">
+                        <i class="fas fa-chart-bar fa-2x text-warning mb-2"></i>
+                        <h4 class="text-purple">$@(Model.Count > 0 ? Model.Average(p => p.Price).ToString("F2") : "0.00")</h4>
+                        <p class="text-muted mb-0">Precio Promedio</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card glass-effect text-center">
+                    <div class="card-body">
+                        <i class="fas fa-star fa-2x text-danger mb-2"></i>
+                        <h4 class="text-purple">@(Model.Count > 0 ? Model.OrderByDescending(p => p.Price).First().Name.Substring(0, Math.Min(10, Model.OrderByDescending(p => p.Price).First().Name.Length)) : "N/A")</h4>
+                        <p class="text-muted mb-0">Más Caro</p>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Lista de productos (se mostraría cuando haya productos) -->
+        <!-- Lista de productos -->
         <div class="row">
             @foreach (var product in Model)
             {
                 <div class="col-md-6 col-lg-4 col-xl-3 mb-4">
                     <div class="card glass-effect h-100">
-                        <img src="@product.ImageUrl" class="card-img-top" alt="@product.Name" style="height: 200px; object-fit: cover;">
+                        <img src="@product.ImageUrl" class="card-img-top" alt="@product.Name" style="height: 200px; object-fit: cover;"
+                             onerror="this.src='https://via.placeholder.com/300x200?text=Sin+Imagen';">
                         <div class="card-body d-flex flex-column">
                             <h5 class="card-title text-purple">@product.Name</h5>
                             <p class="card-text flex-grow-1">@product.Description</p>
                             <div class="d-flex justify-content-between align-items-center mt-auto">
-                                <span class="h5 text-success mb-0">$@product.Price</span>
-                                <div class="btn-group" role="group">
-                                    <button class="btn btn-outline-primary btn-sm">
-                                        <i class="fas fa-edit"></i>
-                                    </button>
-                                    <button class="btn btn-outline-danger btn-sm">
-                                        <i class="fas fa-trash"></i>
-                                    </button>
-                                </div>
+                                <span class="h5 text-success mb-0">$@product.Price.ToString("F2")</span>
+                                <span class="badge bg-primary">ID: @product.Id</span>
                             </div>
                         </div>
                     </div>

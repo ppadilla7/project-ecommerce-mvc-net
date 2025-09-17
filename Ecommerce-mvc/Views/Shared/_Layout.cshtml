@@ -102,7 +102,7 @@
         }
 
         @@keyframes gradient {
-            0% {
+            0%  {
                 background-position: 0% 50%;
             }
 
@@ -117,6 +117,17 @@
 
         .text-purple {
             color: var(--primary-purple) !important;
+        }
+
+        .user-avatar {
+            width: 32px;
+            height: 32px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 8px;
         }
     </style>
 </head>
@@ -151,13 +162,20 @@
                         @if (Context.Session.GetString("IsLoggedIn") == "true")
                         {
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
-                                    <i class="fas fa-user me-1"></i>@Context.Session.GetString("UserEmail")
+                                <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" role="button" data-bs-toggle="dropdown">
+                                    <div class="user-avatar">
+                                        <i class="fas fa-user"></i>
+                                    </div>
+                                    @Context.Session.GetString("UserName")
                                 </a>
-                                <ul class="dropdown-menu">
+                                <ul class="dropdown-menu dropdown-menu-end">
+                                    <li class="dropdown-header">
+                                        <small class="text-muted">@Context.Session.GetString("UserEmail")</small>
+                                    </li>
+                                    <li><hr class="dropdown-divider"></li>
                                     <li>
                                         <a class="dropdown-item" href="/Account/Logout">
-                                            <i class="fas fa-sign-out-alt me-1"></i>Cerrar Sesión
+                                            <i class="fas fa-sign-out-alt me-2"></i>Cerrar Sesión
                                         </a>
                                     </li>
                                 </ul>
@@ -179,6 +197,22 @@
 
     <div class="container-fluid" style="margin-top: 80px; min-height: calc(100vh - 160px);">
         <main role="main" class="pb-3">
+            <!-- Mostrar mensajes de éxito/error -->
+            @if (TempData["Success"] != null)
+            {
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <i class="fas fa-check-circle me-2"></i>@TempData["Success"]
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            }
+            @if (TempData["Error"] != null)
+            {
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <i class="fas fa-exclamation-circle me-2"></i>@TempData["Error"]
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            }
+
             @RenderBody()
         </main>
     </div>
